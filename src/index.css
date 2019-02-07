@@ -5,6 +5,6 @@ html, body, #root{
 }
 
 #root{
-  background-color:rgb(185,185,185, .05);
+  background-color: #184776;
   min-height: 100vh;
 }
