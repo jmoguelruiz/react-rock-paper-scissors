@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Router, Route, Switch, withRouter } from "react-router-dom";
 import { connect } from 'react-redux';
-import { NotFound } from './components';
+import { NotFound, GuessLayoutRoute, MainLayoutRoute } from './components';
+import login from '../login';
+import { css } from 'glamor';
 
-const Page1 = () => <div>Page 1</div>;
-const Page2 = () => <div>Page 2</div>;
-const Page3 = () => <div>Page 3</div>;
+const Register = () => <div>Register</div>;
+const Game = () => <div>Game</div>;
 
 class Container extends Component {
     render() {
@@ -14,22 +15,22 @@ class Container extends Component {
 
         return (
             <Router history={history}>
-                <div className="container">
+                <div className='container h-100'>
                     <Switch>
-                        <Route
+                        <GuessLayoutRoute 
+                            exact
+                            path="/login"
+                            component={login.Container}
+                        />
+                        <GuessLayoutRoute
+                            exact
+                            path="/register"
+                            component={Register}
+                        />
+                        <MainLayoutRoute
                             exact
                             path="/"
-                            component={Page1}
-                        />
-                        <Route
-                            exact
-                            path="/page2"
-                            component={Page2}
-                        />
-                        <Route
-                            exact
-                            path="/page3"
-                            component={Page3}
+                            component={Game}
                         />
                         <Route component={NotFound} />
                     </Switch>
@@ -37,6 +38,10 @@ class Container extends Component {
             </Router>
         );
     };
+};
+
+const styles = {
+ 
 };
 
 const mapDispatchToProps = (dispatch) => {
