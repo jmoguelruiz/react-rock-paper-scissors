@@ -1,7 +1,8 @@
 import React from 'react';
 import {css} from 'glamor';
+import Weapon from './Weapon';
 
-const Score = ({participant, points, result}) => {
+const Score = ({participant, points, type}) => {
     return (
         <div className={`row align-items-center ${styles.container}`}>
             <div className="col text-center">
@@ -10,11 +11,9 @@ const Score = ({participant, points, result}) => {
                 </div>
             </div>
             <div className="col ">
-                <div className={styles.result}>
-                    <span className={styles.icon}>
-                        {!result ? "?" : result}
-                    </span>
-                </div>
+                <Weapon 
+                    type = {type}
+                />
             </div>
             <div className="col">
                 <div className={styles.points}>
@@ -32,21 +31,6 @@ const styles = {
     label : css({
         fontSize: 15,
         color: "#fff"
-    }),
-    result : css({
-        margin: "0 auto",
-        width : 100,
-        height: 100,
-        borderRadius: 100,
-        textAlign: "center",
-        border: "2px dashed #fff",
-        padding: 25,
-        fontWeight: 300
-    }),
-    icon : css({
-        fontSize: 30,
-        color: "#fff",
-        marginTop: 15
     }),
     points : css({
         textAlign : "center",

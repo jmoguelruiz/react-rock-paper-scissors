@@ -4,22 +4,22 @@ import Mode from './Mode';
 import Score from './Score';
 
 
-const Board = () => {
+const Board = ({mode, answerPlayer, answerComputer, scorePlayer, scoreComputer}) => {
     return (
         <div>
-            <Mode />
+            <Mode mode={mode} />
             <Score 
                 participant = "COMPUTER"
-                result = {0}
-                points = {10}
+                type = {answerComputer}
+                points = {scoreComputer}
             />
-            <div class = {styles.title}>
+            <div className = {styles.title}>
                 vs
             </div>
             <Score 
                 participant = "PLAYER"
-                result = {0}
-                points = {10}
+                type = {answerPlayer}
+                points = {scorePlayer}
             />
         </div>
     );
