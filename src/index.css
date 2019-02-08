@@ -2,8 +2,9 @@ html, body, #root{
   font-size: 12px;
   font-family: 'opensans';
   height : 100%;
+
 }
 
-#root{
+body{
   background-color: #184776;
 }

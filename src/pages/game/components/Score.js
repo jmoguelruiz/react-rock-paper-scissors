@@ -2,7 +2,7 @@ import React from 'react';
 import {css} from 'glamor';
 import Weapon from './Weapon';
 
-const Score = ({participant, points, type}) => {
+const Score = ({participant, points, type, isLoading}) => {
     return (
         <div className={`row align-items-center ${styles.container}`}>
             <div className="col text-center">
@@ -10,10 +10,14 @@ const Score = ({participant, points, type}) => {
                     {participant}
                 </div>
             </div>
-            <div className="col ">
-                <Weapon 
-                    type = {type}
-                />
+            <div className="col text-center">
+                {
+                    isLoading 
+                    ? <span className={`fas fa-spin fa-circle-notch ${styles.loading}`}/>
+                    : <Weapon 
+                        type = {type}
+                    />
+                }
             </div>
             <div className="col">
                 <div className={styles.points}>
@@ -25,6 +29,11 @@ const Score = ({participant, points, type}) => {
 }
 
 const styles = {
+    loading : css({
+        fontSize: 24,
+        color: "#fff",
+        textAlign : 'center'
+    }),
     container: css({
         margin: "30px 0px 30px 0px"
     }),

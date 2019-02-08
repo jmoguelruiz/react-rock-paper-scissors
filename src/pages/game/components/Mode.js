@@ -1,12 +1,15 @@
 import React from 'react';
+import {MODE_PLAYER_COMPUTER } from '../constants';
 import {css} from 'glamor';
 
-const Mode = () => {
+const Mode = ({changeMode, mode}) => {
     return (
         <div className={`row ${styles.container}`}>
             <div className="col text-center">
-                <div className={styles.title}>PLAYER VS COMPUTER</div>
-                <button className={styles.button}>CHANGE MODE</button>
+                <div className={styles.title}>
+                    {mode === MODE_PLAYER_COMPUTER ? 'PLAYER VS COMPUTER' : 'PLAYER VS PLAYER'}
+                </div>
+                <button className={styles.button} onClick={changeMode}>CHANGE MODE</button>
             </div>
         </div>
     );

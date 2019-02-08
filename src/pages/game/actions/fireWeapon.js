@@ -20,8 +20,6 @@ const winTable = {
 }
 
 
-
-
 /** Funcion para activar un arma. */
 export default function(type){
 

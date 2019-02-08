@@ -29,3 +29,8 @@ export const getScoreComputer = createSelector(
     getModel,
     (model) => model.scoreComputer
 );
+
+export const getWaitingResponse = createSelector(
+    getModel,
+    (model) => model.waitingResponse
+);

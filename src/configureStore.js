@@ -2,6 +2,13 @@ import { createStore, compose, applyMiddleware } from 'redux';
 import { routerMiddleware } from 'connected-react-router';
 import createRootReducer from './pages/main/reducer';
 import createHistory from "history/createBrowserHistory";
+
+/** Socket */
+import createSocketIoMiddleware from 'redux-socket.io';
+import io from 'socket.io-client';
+let socket = io('http://localhost:8000');
+let socketIoMiddleware = createSocketIoMiddleware(socket, "server/");
+
 export const history = createHistory();
 
 export default function configureStore(preloadedState) {
@@ -14,9 +21,14 @@ export default function configureStore(preloadedState) {
       composeEnhancers(
         applyMiddleware(
           routerMiddleware(history),
+          socketIoMiddleware
         ),
       ),
     )
+
+    store.subscribe(()=>{
+      console.log('new client state', store.getState());
+    });
   
     if (module.hot) {
       module.hot.accept('./pages/main/reducer', () => {
