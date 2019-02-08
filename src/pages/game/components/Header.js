@@ -15,7 +15,7 @@ const styles = {
     container : css({
         backgroundColor: "#112b46",
         padding : 15,
-        fontSize: 15,
+        fontSize: 22,
         color: "#fff"
     })
 };

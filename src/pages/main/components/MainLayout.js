@@ -2,7 +2,7 @@ import React from 'react';
 
 const MainLayout = ({ children }) => {
     return (
-        <div className="container">
+        <div className="container h-100">
             {children}
         </div>
     );

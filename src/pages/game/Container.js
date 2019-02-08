@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import {Header, Weapons} from './components';
+import {css} from 'glamor';
+import {Header, Weapons, Board} from './components';
 
 class Container extends Component{
     render(){
         return (
             <div>
                 <Header />
-                Gameasdfasd
+                <Board />
                 <Weapons />
             </div>
         );
