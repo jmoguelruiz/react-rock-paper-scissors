@@ -5,17 +5,17 @@ const winTable = {
     'rock' : {
         'rock' : 0,
         'paper' : -1,
-        'scissor' : 1
+        'scissors' : 1
     },
     'paper' : {
         'rock' : 1,
         'paper' : 0,
-        'scissor' : -1
+        'scissors' : -1
     },
     'scissors' : {
         'rock' : -1,
         'paper' : 1,
-        'scissor' : 0
+        'scissors' : 0
     } 
 }
 
