@@ -34,3 +34,18 @@ export const getWaitingResponse = createSelector(
     getModel,
     (model) => model.waitingResponse
 );
+
+export const getPlayerNumber = createSelector(
+    getModel,
+    (model) => model.playerNumber
+);
+
+export const getIsRemote = createSelector(
+    getModel,
+    (model) => model.isRemote
+);
+
+export const getAnswerPlayerTwo = createSelector(
+    getModel,
+    (model) => model.answerPlayerTwo
+);

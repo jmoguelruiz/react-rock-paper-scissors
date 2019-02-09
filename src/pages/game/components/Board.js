@@ -5,17 +5,31 @@ import Mode from './Mode';
 import Score from './Score';
 
 
-const Board = ({mode, answerPlayer, answerComputer, scorePlayer, scoreComputer, waitingResponse, changeMode}) => {
+const Board = ({
+            mode, 
+            answerPlayer, 
+            answerComputer, 
+            scorePlayer, 
+            scoreComputer, 
+            waitingResponse, 
+            changeMode, 
+            isRemote, 
+            answerPlayerTwo,
+            playerNumber
+    }) => {
+
+        console.log('answerPlayer',answerPlayer);
+        console.log('answerPlayerTwo',answerPlayerTwo);
+
     return (
         <div>
             <Mode mode={mode} changeMode={changeMode}/>
             {
                 mode == MODE_PLAYER_PLAYER
                 ? <Score 
-                    participant = "PLAYER"
-                    type = {answerComputer}
+                    participant = {'PLAYER' } 
+                    type = {playerNumber === "1" ? answerPlayer : answerPlayerTwo }
                     points = {scoreComputer}
-                    isLoading = {waitingResponse}
                 />
                 :  <Score 
                     participant = "COMPUTER"
@@ -27,8 +41,8 @@ const Board = ({mode, answerPlayer, answerComputer, scorePlayer, scoreComputer, 
                 vs
             </div>
             <Score 
-                participant = "PLAYER"
-                type = {answerPlayer}
+                participant = {'YOU'}
+                type = {playerNumber === "0" ? answerPlayer : answerPlayerTwo}
                 points = {scorePlayer}
             />
         </div>

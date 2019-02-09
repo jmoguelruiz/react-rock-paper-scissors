@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Router, Route, Switch, withRouter } from "react-router-dom";
 import { connect } from 'react-redux';
 import { NotFound, GuessLayoutRoute, MainLayoutRoute } from './components';
-import { subscribeToTimer } from '../../api/api';
 import login from '../login';
 import game from '../game';
 
