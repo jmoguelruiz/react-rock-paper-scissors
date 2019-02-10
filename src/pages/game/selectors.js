@@ -1,5 +1,6 @@
-import { NAME } from './constants';
+import { NAME, MODE_PLAYER_COMPUTER } from './constants';
 import { createSelector } from 'reselect';
+import {MODE_PLAYER_PLAYER} from './constants';
 
 export const getModel = (state) => {
     return state[NAME];
@@ -58,4 +59,27 @@ export const getScorePlayerTwo = createSelector(
 export const getWinner = createSelector(
     getModel,
     (model) => model.winner
+);
+
+export const getSocketId = createSelector(
+    getModel,
+    (model) => model.socketId
+);
+
+export const getPlayersOnline = createSelector(
+    getModel,
+    (model) => model.playersOnline
+);
+
+export const getCanPlayOnline = createSelector(
+    getMode,
+    getPlayersOnline,
+    getPlayerNumber,
+    (mode, playersOnline, playerNumber) => {
+    return  (mode == MODE_PLAYER_COMPUTER  // Que me encuentre en modo PLAYER_COMPUTER
+                && playersOnline < 2) // Que exista un cupo para entrar.
+            || (mode == MODE_PLAYER_PLAYER) // Que se encuentre jugando online.
+               && (playerNumber == 0 || playerNumber == 1 || playerNumber == null) // Tenga una posicion en el tablero.
+
+    }
 );

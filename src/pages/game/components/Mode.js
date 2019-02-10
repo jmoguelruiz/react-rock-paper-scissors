@@ -2,14 +2,17 @@ import React from 'react';
 import {MODE_PLAYER_COMPUTER } from '../constants';
 import {css} from 'glamor';
 
-const Mode = ({changeMode, mode}) => {
+const Mode = ({changeMode, mode, hideButton, infoText}) => {
     return (
         <div className={`row ${styles.container}`}>
             <div className="col text-center">
                 <div className={styles.title}>
                     {mode === MODE_PLAYER_COMPUTER ? 'PLAYER VS COMPUTER' : 'PLAYER VS PLAYER'}
                 </div>
-                <button className={styles.button} onClick={changeMode}>CHANGE MODE</button>
+                {
+                    hideButton ? '' : <button className={styles.button} onClick={changeMode}>CHANGE MODE</button>
+                }
+                {infoText}
             </div>
         </div>
     );

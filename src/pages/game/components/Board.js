@@ -15,12 +15,18 @@ const Board = ({
     answerPlayerTwo,
     playerNumber,
     scorePlayerTwo,
-    winner
+    winner,
+    canPlayOnline
 }) => {
-
+    console.log(canPlayOnline);
     return (
         <div>
-            <Mode mode={mode} changeMode={changeMode} />
+            <Mode 
+                mode={mode} 
+                changeMode={changeMode} 
+                hideButton={!canPlayOnline}
+                infoText={canPlayOnline == false ? "En esta primera version solo es posible conectar a dos jugadores a la vez, pueden intentar ganarle a la máquina mientra se libera una conexión. Gracias" : ""}
+            />
             {
                 mode == MODE_PLAYER_PLAYER
                     ? <Score

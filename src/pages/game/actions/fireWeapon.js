@@ -1,42 +1,28 @@
-import {FIRE_WEAPON} from '../actionTypes';
+import { FIRE_WEAPON } from '../actionTypes';
 
 const weapons = ['rock', 'paper', 'scissors'];
 const winTable = {
-    'rock' : {
-        'rock' : 0,
-        'paper' : -1,
-        'scissors' : 1
-    },
-    'paper' : {
-        'rock' : 1,
-        'paper' : 0,
-        'scissors' : -1
-    },
-    'scissors' : {
-        'rock' : -1,
-        'paper' : 1,
-        'scissors' : 0
-    } 
-}
-
+    'rock': { 'rock': 0, 'paper': -1, 'scissors': 1 },
+    'paper': { 'rock': 1, 'paper': 0, 'scissors': -1 },
+    'scissors': { 'rock': -1, 'paper': 1, 'scissors': 0 }
+};
 
 /** Funcion para activar un arma. */
-export default function(type){
+export default function (type) {
 
     let answerComputer = getComputerChoice();
 
-    let winner = winTable[answerComputer][type] === 0 
-                ? 'tie'
-                : winTable[answerComputer][type] === 1
-                   ? 'computer' : 'player';
-
+    let winner = winTable[answerComputer][type] === 0
+        ? 'tie'
+        : winTable[answerComputer][type] === 1
+            ? 'computer' : 'player';
 
     return {
-        type : FIRE_WEAPON,
+        type: FIRE_WEAPON,
         payload: {
-            answerComputer : answerComputer,
-            answerPlayer : type,
-            winner : winner
+            answerComputer: answerComputer,
+            answerPlayer: type,
+            winner: winner
         }
     }
 }
