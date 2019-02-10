@@ -75,7 +75,13 @@ export default function (state = INITIAL_STATE, action) {
                 answerPlayer: { $set: null },
                 answerPlayerTwo: { $set: null },
                 answerComputer: { $set: null },
-                winner: { $set: null }
+                scorePlayer:  { $set : 0},
+                scorePlayerTwo: {$set : 0},
+                scoreComputer: {$set : 0},
+                winner: { $set: null },
+                playerNumber: { $set : null},
+                isRemote: { $set : false},
+
             });
 
 

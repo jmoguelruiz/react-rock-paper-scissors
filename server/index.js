@@ -96,6 +96,13 @@ io.on('connection', function (socket) {
   socket.on('disconnect', function () {
     console.log(`Player ${playerIndex} Disconnected`);
     connections[playerIndex] = null;
+
+    weaponPlayerOne = null;
+    weaponPlayerTwo = null;
+
+    socket.broadcast.emit('action', {
+      type: RESET_BOARD
+    });
   });
 
 });

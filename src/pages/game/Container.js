@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
-import { Header, Weapons, Board, BoardPlayerVsPlayer } from './components';
+import { Header, Weapons, Board } from './components';
 import actions from './actions';
-import { MODE_PLAYER_COMPUTER } from './constants';
+import { MODE_PLAYER_COMPUTER, MODE_PLAYER_PLAYER } from './constants';
 import api from './api';
 import * as selectors from './selectors';
 
@@ -52,12 +52,14 @@ class Container extends Component {
                         />
                     }
                 </div>
-                <div className="col-12  align-content-end" >
+                <div className="col-12  align-content-end">
                     <Weapons
                         fireWeapon={mode == MODE_PLAYER_COMPUTER ? fireWeapon : fireWeaponRemote}
                         disabled = {
-                            (playerNumber === "0" && answerPlayer && !answerPlayerTwo)
-                            || (playerNumber === "1" && answerPlayerTwo  && !answerPlayer)
+                            mode == MODE_PLAYER_PLAYER 
+                                ? ((playerNumber === "0" && answerPlayer && !answerPlayerTwo)
+                                   || (playerNumber === "1" && answerPlayerTwo  && !answerPlayer)) 
+                                : false
                         }
                     />
                 </div>
