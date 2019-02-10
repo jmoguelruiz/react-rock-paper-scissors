@@ -2,25 +2,28 @@ import React from 'react';
 import { css } from 'glamor';
 import Weapon from './Weapon';
 
-const Weapons = ({fireWeapon}) => {
+const Weapons = ({fireWeapon, disabled}) => {
     return (
         <div className={`row align-items-center justify-content-center text-center ${styles.container}`}>
             <div className={`col`}>
                 <Weapon 
                     type = 'rock'
                     onClick = {() => fireWeapon('rock')}
+                    disabled = {disabled}
                 />
             </div>
             <div className={`col`}>
                 <Weapon 
                     type = 'paper'
                     onClick = {() => fireWeapon('paper')}
+                    disabled = {disabled}
                 />
             </div>
             <div className={`col`}>
                 <Weapon 
                     type = 'scissors'
                     onClick = {() => fireWeapon('scissors')}
+                    disabled = {disabled}
                 />
             </div>
             <div className={`col-12 ${styles.text}`}>

@@ -11,15 +11,12 @@ const Board = ({
             answerComputer, 
             scorePlayer, 
             scoreComputer, 
-            waitingResponse, 
             changeMode, 
-            isRemote, 
             answerPlayerTwo,
-            playerNumber
+            playerNumber,
+            scorePlayerTwo,
+            winner
     }) => {
-
-        console.log('answerPlayer',answerPlayer);
-        console.log('answerPlayerTwo',answerPlayerTwo);
 
     return (
         <div>
@@ -29,7 +26,15 @@ const Board = ({
                 ? <Score 
                     participant = {'PLAYER' } 
                     type = {playerNumber === "1" ? answerPlayer : answerPlayerTwo }
-                    points = {scoreComputer}
+                    points = {playerNumber === "1" ? scorePlayer : scorePlayerTwo }
+                    hide = { 
+                        (playerNumber === "1" && answerPlayer && !answerPlayerTwo)
+                        || (playerNumber === "0" && answerPlayerTwo && !answerPlayer)
+                    }
+                    isWinner = { 
+                        (playerNumber === "1" && winner == 'playerOne')
+                        || (playerNumber === "0" &&  winner == 'playerTwo')
+                    }
                 />
                 :  <Score 
                     participant = "COMPUTER"
@@ -43,7 +48,11 @@ const Board = ({
             <Score 
                 participant = {'YOU'}
                 type = {playerNumber === "0" ? answerPlayer : answerPlayerTwo}
-                points = {scorePlayer}
+                points = {playerNumber === "0" ? scorePlayer : scorePlayerTwo}
+                isWinner = { 
+                    (playerNumber === "1" && winner == 'playerTwo')
+                        || (playerNumber === "0" &&  winner == 'playerOne')
+                 }
             />
         </div>
     );

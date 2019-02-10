@@ -22,7 +22,9 @@ class Container extends Component {
             changeMode,
             isRemote,
             playerNumber,
-            answerPlayerTwo
+            answerPlayerTwo,
+            scorePlayerTwo,
+            winner
         } = this.props;
 
 
@@ -33,7 +35,6 @@ class Container extends Component {
                     <Header />
                 </div>
                 <div className="col-12 align-content-center">
-
                     {
                         <Board
                             mode={mode}
@@ -41,18 +42,23 @@ class Container extends Component {
                             answerPlayerTwo={answerPlayerTwo}
                             answerComputer={answerComputer}
                             scorePlayer={scorePlayer}
+                            scorePlayerTwo = {scorePlayerTwo}
                             scoreComputer={scoreComputer}
                             waitingResponse={waitingResponse}
                             changeMode={changeMode}
                             isRemote={isRemote}
                             playerNumber={playerNumber}
+                            winner = {winner}
                         />
                     }
-
                 </div>
                 <div className="col-12  align-content-end" >
                     <Weapons
                         fireWeapon={mode == MODE_PLAYER_COMPUTER ? fireWeapon : fireWeaponRemote}
+                        disabled = {
+                            (playerNumber === "0" && answerPlayer && !answerPlayerTwo)
+                            || (playerNumber === "1" && answerPlayerTwo  && !answerPlayer)
+                        }
                     />
                 </div>
             </div>
@@ -66,19 +72,18 @@ const mapStateToProps = createStructuredSelector({
     answerPlayerTwo: selectors.getAnswerPlayerTwo,
     answerComputer: selectors.getAnswerComputer,
     scorePlayer: selectors.getScorePlayer,
+    scorePlayerTwo: selectors.getScorePlayerTwo,
     scoreComputer: selectors.getScoreComputer,
     waitingResponse: selectors.getWaitingResponse,
     playerNumber: selectors.getPlayerNumber,
-    isRemote: selectors.getIsRemote
+    isRemote: selectors.getIsRemote,
+    winner : selectors.getWinner
 });
 
 const mapDispatchToProps = (dispatch) => {
     return {
         fireWeapon: (type) => dispatch(actions.fireWeapon(type)),
-        changeMode: () => {
-            dispatch(actions.changeMode());
-            dispatch(api.connectPlayer());
-        },
+        changeMode: () => dispatch(actions.changeMode()),
         fireWeaponRemote: (type) => dispatch(api.fireWeaponRemote(type)),
     };
 };

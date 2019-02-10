@@ -49,3 +49,13 @@ export const getAnswerPlayerTwo = createSelector(
     getModel,
     (model) => model.answerPlayerTwo
 );
+
+export const getScorePlayerTwo = createSelector(
+    getModel,
+    (model) => model.scorePlayerTwo
+);
+
+export const getWinner = createSelector(
+    getModel,
+    (model) => model.winner
+);
