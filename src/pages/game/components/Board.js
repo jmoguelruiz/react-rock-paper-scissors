@@ -25,7 +25,7 @@ const Board = ({
                 mode={mode} 
                 changeMode={changeMode} 
                 hideButton={!canPlayOnline}
-                infoText={canPlayOnline == false ? "En esta primera version solo es posible conectar a dos jugadores a la vez, pueden intentar ganarle a la máquina mientra se libera una conexión. Gracias" : ""}
+                infoText={canPlayOnline == false ? "En esta primera version solo es posible conectar a dos jugadores a la vez, puede intentar ganarle a la máquina mientras se libera una conexión. Gracias" : ""}
             />
             {
                 mode == MODE_PLAYER_PLAYER
