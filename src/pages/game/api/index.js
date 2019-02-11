@@ -1,9 +1,9 @@
-import fireWeaponRemote from './fireWeaponRemote';
+import serverFireWeaponRemote from './serverFireWeaponRemote';
 import serverConnectPlayer from './serverConnectPlayer';
 import serverDisconnectPlayer from './serverDisconnectPlayer';
 
 export default {
-    fireWeaponRemote,
+    serverFireWeaponRemote,
     serverConnectPlayer,
     serverDisconnectPlayer
 };

@@ -31,15 +31,15 @@ const Board = ({
                 mode == MODE_PLAYER_PLAYER
                     ? <Score
                         participant={'PLAYER'}
-                        type={playerNumber === "1" ? answerPlayer : answerPlayerTwo}
-                        points={playerNumber === "1" ? scorePlayer : scorePlayerTwo}
+                        type={playerNumber == 1 ? answerPlayer : answerPlayerTwo}
+                        points={playerNumber == 1 ? scorePlayer : scorePlayerTwo}
                         hide={
-                            (playerNumber === "1" && answerPlayer && !answerPlayerTwo)
-                            || (playerNumber === "0" && answerPlayerTwo && !answerPlayer)
+                            (playerNumber == 1 && answerPlayer && !answerPlayerTwo)
+                            || (playerNumber == 0 && answerPlayerTwo && !answerPlayer)
                         }
                         isWinner={
-                            (playerNumber === "1" && winner == 'playerOne')
-                            || (playerNumber === "0" && winner == 'playerTwo')
+                            (playerNumber == 1 && winner == 'playerOne')
+                            || (playerNumber == 0 && winner == 'playerTwo')
                         }
                     />
                     : <Score
@@ -56,11 +56,11 @@ const Board = ({
                 mode == MODE_PLAYER_PLAYER
                     ? <Score
                         participant={'YOU'}
-                        type={playerNumber === "0" ? answerPlayer : answerPlayerTwo}
-                        points={playerNumber === "0" ? scorePlayer : scorePlayerTwo}
+                        type={playerNumber == 0 ? answerPlayer : answerPlayerTwo}
+                        points={playerNumber == 0 ? scorePlayer : scorePlayerTwo}
                         isWinner={
-                            (playerNumber === "1" && winner == 'playerTwo')
-                            || (playerNumber === "0" && winner == 'playerOne')
+                            (playerNumber == 1 && winner == 'playerTwo')
+                            || (playerNumber == 0 && winner == 'playerOne')
                         }
                     />
                     : <Score

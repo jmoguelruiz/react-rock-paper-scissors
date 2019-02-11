@@ -1,7 +1,7 @@
 import { MODE_PLAYER_COMPUTER, MODE_PLAYER_PLAYER } from './constants';
 import {
-    FIRE_WEAPON, FIRE_WEAPON_REMOTE, CHANGE_MODE,
-    CONNECT_PLAYER_SUCCESS, FIRE_WEAPON_REMOTE_SUCCESS, SEND_WINNER, RESET_BOARD, 
+    FIRE_WEAPON, SERVER_FIRE_WEAPON_REMOTE, CHANGE_MODE,
+    CONNECT_PLAYER_SUCCESS, FIRE_WEAPON_REMOTE_SUCCESS, SEND_WINNER, RESET_BOARD,
     UPDATE_PLAYERS_ONLINE
 } from './actionTypes';
 import update from 'immutability-helper';
@@ -17,7 +17,7 @@ const INITIAL_STATE = {
     scorePlayer: 0,
     scorePlayerTwo: 0,
     scoreComputer: 0,
-    playersOnline : 0,
+    playersOnline: 0,
 };
 
 export default function (state = INITIAL_STATE, action) {
@@ -60,46 +60,27 @@ export default function (state = INITIAL_STATE, action) {
                 playersOnline: { $set: action.payload },
             });
 
- 
+        case SERVER_FIRE_WEAPON_REMOTE:
+            return update(state, {
+                answerPlayer: { $apply: (value) => state.playerNumber == 0 ? action.payload : value },
+                answerPlayerTwo: { $apply: (value) => state.playerNumber == 1 ? action.payload : value }
+            });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-        case FIRE_WEAPON_REMOTE:
-
-            if (state.playerNumber == 0) {
-                state = update(state, { answerPlayer: { $set: action.payload } })
-            } else {
-                state = update(state, { answerPlayerTwo: { $set: action.payload } })
-            }
-            return state;
 
         case FIRE_WEAPON_REMOTE_SUCCESS:
-            if (action.payload.playerIndex == 0) {
-                state = update(state, { answerPlayer: { $set: action.payload.move } })
-            } else {
-                state = update(state, { answerPlayerTwo: { $set: action.payload.move } })
-            }
-            return state;
+            return update(state, {
+                answerPlayer: { $apply: (value) => action.payload.playerNumber == 0 ? action.payload.move : value },
+                answerPlayerTwo: { $apply: (value) => action.payload.playerNumber == 1 ? action.payload.move : value }
+            });
 
         case SEND_WINNER:
-            state = update(state, { winner: { $set: action.payload } });
-            if (action.payload === 'playerOne') {
-                state = update(state, { scorePlayer: { $apply: (value) => value + 1 } })
-            } else if (action.payload === 'playerTwo') {
-                state = update(state, { scorePlayerTwo: { $apply: (value) => value + 1 } })
-            }
-            return state;
+        return update(state, {
+            winner: { $set: action.payload },
+            answerPlayer: { $apply: (value) => action.payload == 'playerOne' ? value + 1  : value },
+            answerPlayerTwo: { $apply: (value) => action.payload == 'playerTwo' ? value + 1  : value }
+        });
+            
+           
 
 
 

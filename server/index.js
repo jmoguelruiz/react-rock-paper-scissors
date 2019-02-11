@@ -11,12 +11,19 @@ const io = socketio(server);
 server.listen(port, () => console.log(`server started at port ${port}`));
 console.log('=========');
 
+const winTable = {
+  'rock': { 'rock': 0, 'paper': -1, 'scissors': 1 },
+  'paper': { 'rock': 1, 'paper': 0, 'scissors': -1 },
+  'scissors': { 'rock': -1, 'paper': 1, 'scissors': 0 }
+};
 let totalUsersConnected = 0;
 let players = [];
 let availablesPlayers = {
-  playerOne : true,
-  playerTwo : true
+  playerOne: true,
+  playerTwo: true
 };
+let weaponPlayerOne = null;
+let weaponPlayerTwo = null
 
 let element = null;
 
@@ -25,15 +32,17 @@ const SERVER_CONNECT_PLAYER = `server/game/SERVER_CONNECT_PLAYER`;
 const SERVER_DISCONNECT_PLAYER = `server/game/SERVER_DISCONNECT_PLAYER`;
 const CONNECT_PLAYER_SUCCESS = `game/CONNECT_PLAYER_SUCCESS`;
 const UPDATE_PLAYERS_ONLINE = `game/UPDATE_PLAYERS_ONLINE`;
-const FIRE_WEAPON_REMOTE = 'server/game/FIRE_WEAPON_REMOTE';
+const SERVER_FIRE_WEAPON_REMOTE = 'server/game/SERVER_FIRE_WEAPON_REMOTE';
 const FIRE_WEAPON_REMOTE_SUCCESS = 'game/FIRE_WEAPON_REMOTE_SUCCESS';
+const SEND_WINNER = 'game/SEND_WINNER';
+
 
 
 io.on('connection', function (socket) {
-  
+
 
   totalUsersConnected++;
-  
+
   // connections[playerIndex] = socket;
   console.log('socketId', socket.id);
   console.log('players', players);
@@ -50,25 +59,25 @@ io.on('connection', function (socket) {
   socket.on('action', (action) => {
     console.log('action', action);
 
-    
+
     switch (action.type) {
       case SERVER_CONNECT_PLAYER:
 
         let availablePlayer = getAvailablePlayer();
         element = findElementBySocketId(socket.id);
 
-        if(!element){
+        if (!element) {
           players.push({
-            socketId : socket.id,
-            playerNumber : availablePlayer
+            socketId: socket.id,
+            playerNumber: availablePlayer
           });
         }
 
         socket.emit('action', {
           type: CONNECT_PLAYER_SUCCESS,
           payload: {
-            socketId : socket.id,
-            playerNumber:  availablePlayer,
+            socketId: socket.id,
+            playerNumber: availablePlayer,
           }
         });
 
@@ -88,14 +97,42 @@ io.on('connection', function (socket) {
         });
         break;
 
-     
+      case SERVER_FIRE_WEAPON_REMOTE:
+        element = findElementBySocketId(socket.id);
+        if (element.playerNumber == 0) {
+          weaponPlayerOne = action.payload;
+        } else {
+          weaponPlayerTwo = action.payload;
+        }
+        socket.broadcast.emit('action', {
+          type: FIRE_WEAPON_REMOTE_SUCCESS,
+          payload: {
+            playerNumber: element.playerNumber,
+            move: action.payload
+          }
+        });
+
+        if (weaponPlayerOne && weaponPlayerTwo) {
+          io.emit('action', {
+            type: SEND_WINNER,
+            payload: getWinner()
+          });
+
+          weaponPlayerOne = null;
+          weaponPlayerTwo = null;
+        }
+        break;
+
+
       default:
         break;
     }
-        
+
     console.log('availablesPlayers', availablesPlayers);
     console.log('playersOnline', players.length);
     console.log('players', players);
+    console.log('wepaonPlayerOne', weaponPlayerOne);
+    console.log('weaponPlayerTwo', weaponPlayerTwo);
     console.log('=========');
     return;
 
@@ -123,40 +160,47 @@ io.on('connection', function (socket) {
 });
 
 
-function setAvailablePlayer(numberPlayer){
-  if(numberPlayer == 0){
+function setAvailablePlayer(numberPlayer) {
+  if (numberPlayer == 0) {
     availablesPlayers.playerOne = true;
-  }else if(numberPlayer == 1){
+  } else if (numberPlayer == 1) {
     availablesPlayers.playerTwo = true;
   }
 }
 
-function getAvailablePlayer(){
-  if(availablesPlayers.playerOne){
+function getAvailablePlayer() {
+  if (availablesPlayers.playerOne) {
     availablesPlayers.playerOne = false;
     return 0;
-  }else if(availablesPlayers.playerTwo){
+  } else if (availablesPlayers.playerTwo) {
     availablesPlayers.playerTwo = false;
     return 1;
   }
-  
+
   return -1;
-  
+
 }
 
-function findElementBySocketId(socketId){
-    return players.find((element) => {
-      return element.socketId == socketId;
-    });
+function findElementBySocketId(socketId) {
+  return players.find((element) => {
+    return element.socketId == socketId;
+  });
 }
 
-function removeSocketId(socketId){
-    players = players.filter((player) => {
-        if(player.socketId == socketId){
-          setAvailablePlayer(player.playerNumber);
-        }
-        return player.socketId !== socketId;
-    });
+function removeSocketId(socketId) {
+  players = players.filter((player) => {
+    if (player.socketId == socketId) {
+      setAvailablePlayer(player.playerNumber);
+    }
+    return player.socketId !== socketId;
+  });
+}
+
+function getWinner() {
+  return winTable[weaponPlayerOne][weaponPlayerTwo] === 0
+    ? 'tie'
+    : winTable[weaponPlayerOne][weaponPlayerTwo] === 1
+      ? 'playerOne' : 'playerTwo';
 }
 
 // /** Actions */

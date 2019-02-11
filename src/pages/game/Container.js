@@ -28,7 +28,6 @@ class Container extends Component {
             canPlayOnline
         } = this.props;
 
-
         return (
 
             <div className="row h-100">
@@ -59,8 +58,8 @@ class Container extends Component {
                         fireWeapon={mode == MODE_PLAYER_COMPUTER ? fireWeapon : fireWeaponRemote}
                         disabled = {
                             mode == MODE_PLAYER_PLAYER 
-                                ? ((playerNumber === "0" && answerPlayer && !answerPlayerTwo)
-                                   || (playerNumber === "1" && answerPlayerTwo  && !answerPlayer)) 
+                                ? ((playerNumber == 0 && answerPlayer && !answerPlayerTwo)
+                                   || (playerNumber == 1 && answerPlayerTwo  && !answerPlayer)) 
                                 : false
                         }
                     />
@@ -90,7 +89,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         fireWeapon: (type) => dispatch(actions.fireWeapon(type)),
         changeMode: () => dispatch(actions.changeMode()),
-        fireWeaponRemote: (type) => dispatch(api.fireWeaponRemote(type)),
+        fireWeaponRemote: (type) => dispatch(api.serverFireWeaponRemote(type)),
     };
 };
 

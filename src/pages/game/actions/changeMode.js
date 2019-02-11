@@ -1,7 +1,7 @@
 import {CHANGE_MODE} from '../actionTypes';
-import resetBoard from './resetBoard';
 import {MODE_PLAYER_COMPUTER} from '../constants';
 import api from '../api';
+import resetBoard from './resetBoard';
 import {getMode, getSocketId, getPlayerNumber} from '../selectors';
 
 export default function() {
@@ -12,6 +12,7 @@ export default function() {
         const socketId = getSocketId(state);
         const playerNumber = getPlayerNumber(state);
 
+        dispatch(resetBoard());
         dispatch({
             type : CHANGE_MODE,
             payload : ''
