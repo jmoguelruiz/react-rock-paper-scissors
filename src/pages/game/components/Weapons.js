@@ -2,7 +2,7 @@ import React from 'react';
 import { css } from 'glamor';
 import Weapon from './Weapon';
 
-const Weapons = ({fireWeapon, disabled}) => {
+const Weapons = ({fireWeapon, disabled, textInfo}) => {
     return (
         <div className={`row align-items-center justify-content-center text-center ${styles.container}`}>
             <div className={`col`}>
@@ -29,6 +29,7 @@ const Weapons = ({fireWeapon, disabled}) => {
             <div className={`col-12 ${styles.text}`}>
                 CHOOSE A WEAPON
             </div>
+            {textInfo}
         </div>
     );
 }

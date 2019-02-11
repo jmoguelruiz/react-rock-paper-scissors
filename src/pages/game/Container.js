@@ -25,7 +25,8 @@ class Container extends Component {
             answerPlayerTwo,
             scorePlayerTwo,
             winner,
-            canPlayOnline
+            canPlayOnline,
+            playersOnline
         } = this.props;
 
         return (
@@ -60,8 +61,10 @@ class Container extends Component {
                             mode == MODE_PLAYER_PLAYER 
                                 ? ((playerNumber == 0 && answerPlayer && !answerPlayerTwo)
                                    || (playerNumber == 1 && answerPlayerTwo  && !answerPlayer)) 
+                                   || playersOnline < 2 
                                 : false
                         }
+                        textInfo = { mode == MODE_PLAYER_PLAYER && playersOnline < 2 ? `Porfavor espere a que algún contrincante se conecte, para poder jugar.` : ''}
                     />
                 </div>
             </div>
@@ -83,6 +86,7 @@ const mapStateToProps = createStructuredSelector({
     playerNumber: selectors.getPlayerNumber,
     isRemote: selectors.getIsRemote,
     winner : selectors.getWinner,
+    playersOnline : selectors.getPlayersOnline
 });
 
 const mapDispatchToProps = (dispatch) => {

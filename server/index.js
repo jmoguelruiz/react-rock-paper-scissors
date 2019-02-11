@@ -35,6 +35,7 @@ const UPDATE_PLAYERS_ONLINE = `game/UPDATE_PLAYERS_ONLINE`;
 const SERVER_FIRE_WEAPON_REMOTE = 'server/game/SERVER_FIRE_WEAPON_REMOTE';
 const FIRE_WEAPON_REMOTE_SUCCESS = 'game/FIRE_WEAPON_REMOTE_SUCCESS';
 const SEND_WINNER = 'game/SEND_WINNER';
+const RESET_ANSWERS = 'game/RESET_ANSWERS';
 
 
 
@@ -53,7 +54,6 @@ io.on('connection', function (socket) {
     type: UPDATE_PLAYERS_ONLINE,
     payload: players.length
   });
-
 
   // Acciones ejecutadas por redux.
   socket.on('action', (action) => {
@@ -98,6 +98,13 @@ io.on('connection', function (socket) {
         break;
 
       case SERVER_FIRE_WEAPON_REMOTE:
+
+        if (!weaponPlayerOne && !weaponPlayerTwo) {
+          socket.broadcast.emit('action', {
+            type: RESET_ANSWERS
+          });
+        }
+
         element = findElementBySocketId(socket.id);
         if (element.playerNumber == 0) {
           weaponPlayerOne = action.payload;
@@ -142,12 +149,18 @@ io.on('connection', function (socket) {
 
   /////////
   socket.on('disconnect', function () {
+
     totalUsersConnected--;
     removeSocketId(socket.id);
+    weaponPlayerOne = null;
+    weaponPlayerTwo = null;
     io.emit('action', {
       type: UPDATE_PLAYERS_ONLINE,
       payload: players.length
     });
+
+
+
     console.log('socketId', socket.id);
     console.log('totalUsersConnected', totalUsersConnected)
     console.log('availablesPlayers', availablesPlayers);
