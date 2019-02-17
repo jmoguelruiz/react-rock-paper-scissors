@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const LoginLayout = ({ children }) => {
     return (
@@ -8,6 +9,10 @@ const LoginLayout = ({ children }) => {
             </div>
         </div>
     );
+}
+
+LoginLayout.propTypes = {
+    children : PropTypes.element
 }
 
 export default LoginLayout;

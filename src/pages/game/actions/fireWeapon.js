@@ -1,6 +1,8 @@
 import { FIRE_WEAPON } from '../actionTypes';
-
+/** Disparos */
 const weapons = ['rock', 'paper', 'scissors'];
+
+/** Tabla para saber el ganador. */
 const winTable = {
     'rock': { 'rock': 0, 'paper': -1, 'scissors': 1 },
     'paper': { 'rock': 1, 'paper': 0, 'scissors': -1 },

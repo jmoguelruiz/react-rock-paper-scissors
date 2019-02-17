@@ -1,9 +1,9 @@
-import {SERVER_FIRE_WEAPON_REMOTE} from '../actionTypes';
+import { SERVER_FIRE_WEAPON_REMOTE } from '../actionTypes';
 import resetAnswers from '../actions/resetAnswers';
-import {getAnswerPlayer, getAnswerPlayerTwo} from '../selectors';
+import { getAnswerPlayer, getAnswerPlayerTwo } from '../selectors';
 
-/** Funcion para activar un arma. */
-export default function(type){
+/** Funcion para activar un arma en el servidor. */
+export default function (type) {
 
     return (dispatch, getState) => {
 
@@ -11,14 +11,14 @@ export default function(type){
         const answerPlayer = getAnswerPlayer(state);
         const answerPlayerTwo = getAnswerPlayerTwo(state);
 
-        if(answerPlayer && answerPlayerTwo){
+        if (answerPlayer && answerPlayerTwo) {
             dispatch(resetAnswers())
         }
-        
+
         dispatch({
             type: SERVER_FIRE_WEAPON_REMOTE,
             payload: type
         });
     }
-    
+
 }

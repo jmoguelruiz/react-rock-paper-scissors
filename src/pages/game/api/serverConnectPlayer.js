@@ -1,6 +1,7 @@
-import {SERVER_CONNECT_PLAYER} from '../actionTypes';
+import { SERVER_CONNECT_PLAYER } from '../actionTypes';
 
-export default function(){
+/** Conectarse al servidor. */
+export default function () {
     return {
         type: SERVER_CONNECT_PLAYER
     }

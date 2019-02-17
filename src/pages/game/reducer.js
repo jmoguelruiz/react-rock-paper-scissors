@@ -7,17 +7,17 @@ import {
 import update from 'immutability-helper';
 
 const INITIAL_STATE = {
-    socketId: null,
-    mode: MODE_PLAYER_COMPUTER,
-    playerNumber: null,
-    answerPlayer: null,
-    answerPlayerTwo: null,
-    answerComputer: null,
-    winner: null,
-    scorePlayer: 0,
-    scorePlayerTwo: 0,
-    scoreComputer: 0,
-    playersOnline: 0,
+    socketId: null, // Identificador del socket.
+    mode: MODE_PLAYER_COMPUTER, // Modo
+    playerNumber: null, // Numero del jugador
+    answerPlayer: null, // Respuesta del jugador 1
+    answerPlayerTwo: null, // Respuesta del jugador 2
+    answerComputer: null, // Respeusta de la computadora
+    winner: null, // Ganador
+    scorePlayer: 0, // Puntaje del player 1
+    scorePlayerTwo: 0, // Puntaje del player 2
+    scoreComputer: 0, // Puntaje de la computadora
+    playersOnline: 0, // Número de jugadores online
 };
 
 export default function (state = INITIAL_STATE, action) {

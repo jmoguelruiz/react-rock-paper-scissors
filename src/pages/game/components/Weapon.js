@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { css } from 'glamor';
 
 const Weapon = ({ type, onClick, hide, isWinner, disabled }) => {
@@ -6,15 +7,17 @@ const Weapon = ({ type, onClick, hide, isWinner, disabled }) => {
         <div>
             {
                 !type
-                    ? <div className={css(styles.result, hide ? styles.hide : {})}>
-                        <span className={css(styles.icon, styles.iconQuestion)}>
-                            {"?"}
-                        </span>
-                    </div>
-                    : <button 
-                        disabled = {disabled}
-                        className={`text-center ${css(styles.weapon, isWinner ? styles.isWinner : {} , disabled ? styles.disabled : {} )}`}  onClick={onClick}>
-                            <span className={`far fa-hand-${type} ${styles.icon}`} />
+                    ?   <div className={css(styles.result, hide ? styles.hide : {})}>
+                            <span className={css(styles.icon, styles.iconQuestion)}>
+                                {"?"}
+                            </span>
+                        </div>
+                    :   <button
+                            disabled={disabled}
+                            className={`text-center ${css(styles.weapon, isWinner ? styles.isWinner : {}, disabled ? styles.disabled : {})}`} 
+                            onClick={onClick}
+                        >
+                        <span className={`far fa-hand-${type} ${styles.icon}`} />
                     </button>
             }
         </div>
@@ -50,7 +53,7 @@ const styles = {
         fontWeight: 300,
     }),
     hide: css({
-        backgroundColor : "#fff",
+        backgroundColor: "#fff",
         border: "4px solid #476b96",
         '&>span': {
             color: '#476b96 !important'
@@ -63,8 +66,25 @@ const styles = {
         }
     }),
     disabled: css({
-        opacity : .6
+        opacity: .6
     })
 }
+
+Weapon.propTypes = {
+    /** Tipo. */
+    type: PropTypes.number,
+
+    /** Evento click. */
+    onClick: PropTypes.func,
+
+    /** Bandera para ocultar. */
+    hide: PropTypes.bool,
+
+    /** Bandera para saber si es el ganador. */
+    isWinner: PropTypes.bool,
+
+    /** Bandera para desabilitar los botones. */
+    disabled: PropTypes.bool
+};
 
 export default Weapon;

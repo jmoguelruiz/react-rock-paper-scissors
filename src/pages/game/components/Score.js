@@ -1,8 +1,9 @@
 import React from 'react';
-import {css} from 'glamor';
+import PropTypes from 'prop-types';
+import { css } from 'glamor';
 import Weapon from './Weapon';
 
-const Score = ({participant, points, type, hide, isWinner}) => {
+const Score = ({ participant, points, type, hide, isWinner }) => {
     return (
         <div className={`row align-items-center ${styles.container}`}>
             <div className="col text-center">
@@ -12,14 +13,14 @@ const Score = ({participant, points, type, hide, isWinner}) => {
             </div>
             <div className="col text-center">
                 {
-                    hide 
-                    ? <Weapon 
-                        hide 
-                    />
-                    : <Weapon 
-                        type = {type}
-                        isWinner = {isWinner}
-                    />
+                    hide
+                        ? <Weapon
+                            hide
+                        />
+                        : <Weapon
+                            type={type}
+                            isWinner={isWinner}
+                        />
                 }
             </div>
             <div className="col">
@@ -32,22 +33,22 @@ const Score = ({participant, points, type, hide, isWinner}) => {
 }
 
 const styles = {
-    loading : css({
+    loading: css({
         fontSize: 24,
         color: "#fff",
-        textAlign : 'center'
+        textAlign: 'center'
     }),
     container: css({
         margin: "30px 0px 30px 0px"
     }),
-    label : css({
+    label: css({
         fontSize: 15,
         color: "#fff"
     }),
-    points : css({
-        textAlign : "center",
+    points: css({
+        textAlign: "center",
         margin: "0 auto",
-        width : 60,
+        width: 60,
         fontSize: 15,
         border: "1px solid #fff",
         color: "#fff",
@@ -55,5 +56,22 @@ const styles = {
         borderRadius: 5
     })
 };
+
+Score.propTypes = {
+    /** Participante */
+    participant: PropTypes.string,
+
+    /** Puntaje */
+    points: PropTypes.number,
+
+    /** Tipo */
+    type: PropTypes.string,
+
+    /** Si es oculto */
+    hide: PropTypes.bool,
+
+    /** Ganador */
+    isWinner: PropTypes.bool
+}
 
 export default Score;

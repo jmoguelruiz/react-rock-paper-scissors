@@ -14,25 +14,25 @@ export const history = createHistory();
 
 export default function configureStore(preloadedState) {
 
-    const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-  
-    const store = createStore(
-      createRootReducer(history),
-      preloadedState,
-      composeEnhancers(
-        applyMiddleware(
-          routerMiddleware(history),
-          thunk,
-          socketIoMiddleware
-        ),
-      ),
-    )
+  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-    if (module.hot) {
-      module.hot.accept('./pages/main/reducer', () => {
-        store.replaceReducer(createRootReducer(history));
-      });
-    }
-  
-    return store;
+  const store = createStore(
+    createRootReducer(history),
+    preloadedState,
+    composeEnhancers(
+      applyMiddleware(
+        routerMiddleware(history),
+        thunk,
+        socketIoMiddleware
+      ),
+    ),
+  )
+
+  if (module.hot) {
+    module.hot.accept('./pages/main/reducer', () => {
+      store.replaceReducer(createRootReducer(history));
+    });
   }
+
+  return store;
+}

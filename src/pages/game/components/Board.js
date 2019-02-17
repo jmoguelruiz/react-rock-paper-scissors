@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { MODE_PLAYER_PLAYER } from '../constants';
 import { css } from 'glamor';
 import Mode from './Mode';
@@ -21,9 +22,9 @@ const Board = ({
     console.log(canPlayOnline);
     return (
         <div>
-            <Mode 
-                mode={mode} 
-                changeMode={changeMode} 
+            <Mode
+                mode={mode}
+                changeMode={changeMode}
                 hideButton={!canPlayOnline}
                 infoText={canPlayOnline == false ? "En esta primera version solo es posible conectar a dos jugadores a la vez, puede intentar ganarle a la máquina mientras se libera una conexión. Gracias" : ""}
             />
@@ -82,5 +83,40 @@ const styles = {
         textAlign: 'center'
     })
 }
+
+Board.propTypes = {
+    /** Modo del jugador plaver vs plaver ó payer vs computer. */
+    mode: PropTypes.number,
+
+    /** Respuesta del jugador 1. */
+    answerPlayer: PropTypes.string,
+
+    /** Respuesta de la computadora. */
+    answerComputer: PropTypes.string,
+
+    /** Puntaje del jugador 1. */
+    scorePlayer: PropTypes.number,
+
+    /** Puntaje de la computadora. */
+    scoreComputer: PropTypes.number,
+
+    /** Función para cambiar el modo. */
+    changeMode: PropTypes.func,
+
+    /** Respuesta del jugador 2. */
+    answerPlayerTwo: PropTypes.string,
+
+    /** Que jugador es 1 o 2. */
+    playerNumber: PropTypes.string,
+
+    /** Puntaje del jugador 2. */
+    scorePlayerTwo: PropTypes.number,
+
+    /** Ganador. */
+    winner: PropTypes.string,
+
+    /** Bandera para identificar si es posible jugar online. */
+    canPlayOnline: PropTypes.bool
+};
 
 export default Board;

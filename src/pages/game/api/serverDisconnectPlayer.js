@@ -1,14 +1,14 @@
-import {SERVER_DISCONNECT_PLAYER} from '../actionTypes';
-import {getSocketId, getPlayerNumber} from '../selectors';
+import { SERVER_DISCONNECT_PLAYER } from '../actionTypes';
 
-export default function(playerNumber, socketId){
-    return (dispatch, getState) => {
+/** Desconectarse del servidor. */
+export default function (playerNumber, socketId) {
+    return (dispatch) => {
         return dispatch({
             type: SERVER_DISCONNECT_PLAYER,
             payload: {
                 playerNumber: playerNumber,
-                socketId : socketId
-            } 
+                socketId: socketId
+            }
         });
     }
 }
