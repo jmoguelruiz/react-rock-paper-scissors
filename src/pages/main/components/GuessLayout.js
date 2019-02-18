@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const LoginLayout = ({ children }) => {
     return (
         <div className="row h-100 align-items-center justify-content-center">
-            <div className="col-3">
+            <div className="col-12 h-100">
                 {children}
             </div>
         </div>

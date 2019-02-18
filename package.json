@@ -53,6 +53,7 @@
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.1",
+    "redux-persist": "^5.10.0",
     "redux-socket.io": "^1.4.0",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",

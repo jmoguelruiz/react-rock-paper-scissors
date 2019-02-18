@@ -5,8 +5,7 @@ import { connect } from 'react-redux';
 import { NotFound, GuessLayoutRoute, MainLayoutRoute } from './components';
 import login from '../login';
 import game from '../game';
-
-const Register = () => <div>Register</div>;
+import register from '../register';
 
 class Container extends Component {
 
@@ -26,7 +25,7 @@ class Container extends Component {
                         <GuessLayoutRoute
                             exact
                             path="/register"
-                            component={Register}
+                            component={register.Container}
                         />
                         <MainLayoutRoute
                             exact

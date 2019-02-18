@@ -5,10 +5,20 @@ import { connect } from 'react-redux';
 import { Header, Weapons, Board } from './components';
 import actions from './actions';
 import { MODE_PLAYER_COMPUTER, MODE_PLAYER_PLAYER } from './constants';
+import {push} from 'connected-react-router';
 import api from './api';
 import * as selectors from './selectors';
+import login from '../login';
 
 class Container extends Component {
+
+    componentDidMount(){
+        const {isLogged, redirect} = this.props;
+        if(!isLogged){
+            redirect('/login');
+        }
+    }
+
     render() {
 
         const {
@@ -27,14 +37,15 @@ class Container extends Component {
             scorePlayerTwo,
             winner,
             canPlayOnline,
-            playersOnline
+            playersOnline,
+            logout
         } = this.props;
 
         return (
 
             <div className="row h-100">
                 <div className="col-12" >
-                    <Header />
+                    <Header onLogout={logout}/>
                 </div>
                 <div className="col-12 align-content-center">
                     {
@@ -86,7 +97,8 @@ const mapStateToProps = createStructuredSelector({
     playerNumber: selectors.getPlayerNumber,
     isRemote: selectors.getIsRemote,
     winner: selectors.getWinner,
-    playersOnline: selectors.getPlayersOnline
+    playersOnline: selectors.getPlayersOnline,
+    isLogged : login.selectors.getIsLogged
 });
 
 const mapDispatchToProps = (dispatch) => {
@@ -94,6 +106,8 @@ const mapDispatchToProps = (dispatch) => {
         fireWeapon: (type) => dispatch(actions.fireWeapon(type)),
         changeMode: () => dispatch(actions.changeMode()),
         fireWeaponRemote: (type) => dispatch(api.serverFireWeaponRemote(type)),
+        redirect: (url) => dispatch(push(url)),
+        logout : () => dispatch(login.actions.logout())
     };
 };
 
