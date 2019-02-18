@@ -143,13 +143,13 @@ Container.propTypes = {
     isRemote: PropTypes.bool,
 
     /** Jugador */
-    playerNumber: PropTypes.int,
+    playerNumber: PropTypes.number,
 
     /** Respuesta del Jugador 2 */
     answerPlayerTwo: PropTypes.string,
 
     /** Puntaje del jugador 2 */
-    scorePlayerTwo: PropTypes.int,
+    scorePlayerTwo: PropTypes.number,
 
     /** Ganador */
     winner: PropTypes.string,
