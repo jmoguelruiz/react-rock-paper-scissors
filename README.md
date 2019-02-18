@@ -63,14 +63,4 @@ Estas son las librerias que fueron utilizadas.
 | [socket.io](https://socket.io/) | Socket para interactuar en tiempo real con los jugadores.
 
 
-# Preview
-
-## Movil
-
-### `Menu`
-![See image](https://drive.google.com/uc?export=view&id=1klC8YU6r46sVIihlAgYZwLyU0W7GBBr0)
-
-
-
-
 
