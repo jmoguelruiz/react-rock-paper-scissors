@@ -15,7 +15,7 @@ class Container extends Component {
     componentDidMount(){
         const {isLogged, redirect} = this.props;
         if(!isLogged){
-            redirect('/login');
+            redirect('/react-rock-paper-scissors/login');
         }
     }
 

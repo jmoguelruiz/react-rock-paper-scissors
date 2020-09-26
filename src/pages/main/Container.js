@@ -19,17 +19,17 @@ class Container extends Component {
                     <Switch>
                         <GuessLayoutRoute
                             exact
-                            path="/login"
+                            path="/react-rock-paper-scissors/login"
                             component={login.Container}
                         />
                         <GuessLayoutRoute
                             exact
-                            path="/register"
+                            path="/react-rock-paper-scissors/register"
                             component={register.Container}
                         />
                         <MainLayoutRoute
                             exact
-                            path="/"
+                            path="/react-rock-paper-scissors"
                             component={game.Container}
                         />
                         <Route component={NotFound} />

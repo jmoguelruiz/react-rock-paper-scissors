@@ -8,7 +8,7 @@ export default function (field, value) {
             type : LOGOUT
         });
         dispatch(resetForm());
-        dispatch(push('/login'));
+        dispatch(push('/react-rock-paper-scissors/login'));
         
     }
 }

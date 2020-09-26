@@ -38,7 +38,7 @@ const Form = ({redirect, changeField, formValues, registerUser, formErrors, logi
                     <div className={styles.label}>
                         ó
                     </div>
-                    <div className={(styles.label, styles.link)} onClick={() => redirect('/register')}> 
+                    <div className={(styles.label, styles.link)} onClick={() => redirect('/react-rock-paper-scissors/register')}> 
                         Registrate aquí para poder ingresar
                     </div>
                 </div>

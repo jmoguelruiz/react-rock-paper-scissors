@@ -42,7 +42,7 @@ const Form = ({redirect, changeField, formValues, registerUser, formErrors}) => 
                         </div>
                     </form>
 
-                    <div className={(styles.label, styles.link)} onClick={() => redirect('/login')}> 
+                    <div className={(styles.label, styles.link)} onClick={() => redirect('/react-rock-paper-scissors/login')}> 
                         Regresar al login
                     </div>
                 </div>
