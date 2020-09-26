@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/react-rock-paper-scissors/precache-manifest.557fd1bd98bf8e4868afc598f5c387e7.js"
+  "/react-rock-paper-scissors/precache-manifest.31505d705897660f45cf6099bed66e1d.js"
 );
 
 workbox.clientsClaim();
