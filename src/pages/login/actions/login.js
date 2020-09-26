@@ -21,7 +21,7 @@ export default function () {
             payload: values.nickname
         });
         dispatch(resetForm());
-        dispatch(push('/'));
+        dispatch(push('/react-rock-paper-scissors/'));
 
     }
 }
