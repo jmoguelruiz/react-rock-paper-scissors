@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "4ca415962bf25802ff62",
+    "revision": "c83f934e4ce4e233fd50",
     "url": "/react-rock-paper-scissors/static/css/main.75298303.chunk.css"
   },
   {
-    "revision": "4ca415962bf25802ff62",
-    "url": "/react-rock-paper-scissors/static/js/main.4ca41596.chunk.js"
+    "revision": "c83f934e4ce4e233fd50",
+    "url": "/react-rock-paper-scissors/static/js/main.c83f934e.chunk.js"
   },
   {
     "revision": "afc8b95afa5e8851bfcd",
@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/react-rock-paper-scissors/static/js/runtime~main.2a50b9be.js"
   },
   {
-    "revision": "d220c05ae08b8e99e79f2bcc3332344a",
+    "revision": "f797f14734bbb4234271b5cf6a9b8d14",
     "url": "/react-rock-paper-scissors/index.html"
   }
 ];
